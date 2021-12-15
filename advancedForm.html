@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 form_sec_outer_task border ">
+                    <div class="row">
+                        <div class="col-md-12 bg-light p-2 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="frm_section_n" >Add New Lecture Titles</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="fid">
+                        <div class="col-md-12 p-0">
+                            <div class="col-md-12 form_field_outer p-0">
+                                <div class="row form_field_outer_row">
+                                    <label>New Lecture: </label>
+                                    <div class="form-group col-md-6">
+                                        <input type="number" onfocus="this.value=''" id="number" class="form-control w_90" placeholder="Enter Lecture Number"/>
+                                        <input type="text" onfocus="this.value=''" id="name" class="form-control w_90" placeholder="Enter A Title"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="button" value="Add New Lecture" id="add" onclick="addRow('fid','dataTable')" />
+                            <input type="button" value="Delete Selected Lecture" id="delete" onclick="deleteRow('dataTable')" />
+                        </div>
+                        <table id="dataTable" class="table table-bordered" >
+                            <tr>
+                                <th>Select</th>
+                                <th>Lecture Number</th>
+                                <th>Lecture Title</th>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function addRow(formID, tableID) 
+            {
+                var table = document.getElementById(tableID);
+                var form = document.forms[formID];
+                var rowCount = table.rows.length;
+                var row = table.insertRow(rowCount);
+                var cell1 = row.insertCell(0);
+                var element1 = document.createElement("input");
+                element1.type = "checkbox";
+                cell1.appendChild(element1);
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = form.elements['number'].value;
+                var cell3 = row.insertCell(2);
+                cell3.innerHTML = form.elements['name'].value;
+            }
+            
+            function deleteRow(tableID) 
+            {
+                try
+                {
+                    var table = document.getElementById(tableID);
+                    var rowCount = table.rows.length;
+                    for (var i = 0; i < rowCount; i++) 
+                    {
+                        var row = table.rows[i];
+                        var chkbox = row.cells[0].childNodes[0];
+                        if (null != chkbox && true == chkbox.checked) 
+                        {
+                            table.deleteRow(i);
+                            rowCount--;
+                            i--;
+                        }
+                    }
+                }
+                catch(e)
+                {
+                    alert(e);
+                }
+            }
+        </script>
+    </body>
+</html>
