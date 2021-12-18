@@ -30,8 +30,8 @@
 			function removeReplace(seqNum){
 				$(`#idReplace${seqNum}`).remove();
 				sequenceArray.pop();
-        seqNumbers--;
-        sequenceNumbers--;
+                seqNumbers--;
+                sequenceNumbers--;
 			}
 			
 			$(document).ready(function(){
@@ -56,10 +56,17 @@
 	</head>
 	<body>
   
-		<div class="classMainDiv" id="idMainDiv" style = "height : auto; border: 1px solid black;">
-			<div style="text-align: right;">
-				<button class="classAddBtn" id="idAddBtn" style = "background-color: black; color: white; font-weight: bold;" >ADD</button>
-			</div>
-		</div>
+		<div class="classMainDiv" id="idMainDiv" style = "border: 1px solid black;">
+			<div class = "Unpublished_Section">
+                <div class = "Section">
+                    <span class = "Unpublished_Section_Title">
+                        <b><h2>Unpublished Section: </h2></b>
+                    </span>
+                </div>
+            </div>
+            <div style="text-align: right;">
+		        <button class="classAddBtn" id="idAddBtn" style = "background-color: black; color: white; font-weight: bold;" >ADD</button>
+            </div>
+        </div>
 	</body>
 </html>
