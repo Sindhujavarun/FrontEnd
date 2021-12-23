@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Add Lecture</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-   var lectureNames=[];
-   function addLecture(addId)
-    {
-        var value=addId.slice(3)
-        var ID="#textBox"+value;
-        console.log(ID);
-        let lectureName = $(ID).val();
-        lectureNames.push(lectureName);
-      	console.log(lectureNames);
-        var counter ="#lectureBox"+value;
-      	$(counter).replaceWith(`
-	  		<div class="container p-3 my-3 border" id = "lectureBox${lectureNames.length-1}">
-            <label>Lecture:${lectureNames.length}</label><br>
-            <label>${lectureName}</label>
-            <button id = "Remove${lectureNames.length-1}" onclick="removeLecture(this.id)" class= "Remove" style="margin-left: 600px">Remove</button>
-         	</div>
-        `)
-    }
+	<title>Add Lecture</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var lectureNames=[];
+		function addLecture(addId)
+		{
+		var value=addId.slice(3)
+		var ID="#textBox"+value;
+		console.log(ID);
+		let lectureName = $(ID).val();
+		lectureNames.push(lectureName);
+		console.log(lectureNames);
+		var counter ="#lectureBox"+value;
+		$(counter).replaceWith(`
+			<div class="container p-3 my-3 border" id = "lectureBox${lectureNames.length-1}">
+				<label>Lecture:${lectureNames.length}</label><br>
+				<label>${lectureName}</label>
+				<button id = "Remove${lectureNames.length-1}" onclick="removeLecture(this.id)" class= "Remove" style="margin-left: 600px">Remove</button>
+			</div>
+		`)
+		}
 
-   function createLecture()
-    {
-    	$("#lecture").append(`
-		  	<br>
-         	<div class="container p-3 my-3 border" id = "lectureBox${lectureNames.length}">
-            <label>Lecture:${lectureNames.length+1}</label>
-            <input id = "textBox${lectureNames.length}" type = "text" class = "lectureName"; placeholder = "Enter a Title">
-            <button id = "add${lectureNames.length}" onclick="addLecture(this.id)" class="AddLecture">Add Lecture</button>
-            <button id = "Remove${lectureNames.length}" onclick="removeLecture(this.id)" class= "RemoveLecture">Cancel</button>
-         	</div>
-        `);
-    }
+		function createLecture()
+		{
+		$("#lecture").append(`
+			<br>
+			<div class="container p-3 my-3 border" id = "lectureBox${lectureNames.length}">
+				<label>Lecture:${lectureNames.length+1}</label>
+				<input id = "textBox${lectureNames.length}" type = "text" class = "lectureName"; placeholder = "Enter a Title">
+				<button id = "add${lectureNames.length}" onclick="addLecture(this.id)" class="AddLecture">Add Lecture</button>
+				<button id = "Remove${lectureNames.length}" onclick="removeLecture(this.id)" class= "RemoveLecture">Cancel</button>
+			</div>
+		`);
+		}
 
-   function removeLecture(removeId)
-    {
-        console.log(lectureNames);
-         var ID=removeId.slice(6);
-         console.log("Removed "+lectureNames[ID]);
-         var lectureBoxId="#lectureBox" + ID;
-         lectureNames.splice(ID,1);
-         console.log(lectureNames);
-        $("#lecture").empty();
-        $("#lecture").append(`
-            <h5>Unpublished section:</h5>
-    		<button id="save" onclick="createLecture()">ADD</button>`);
-         $(lectureBoxId).remove(lectureBoxId);
-         lectureNames.forEach(replaceLecture);
-    }
-      
-    function replaceLecture(lectureId,index)
-	{
-        console.log("index:"+index);
-        console.log("lecture:"+lectureId);
-        var ID="#lectureBox"+index;
-        console.log(ID);
-        $("#lecture").append(`
-            <div class="container p-3 my-3 border" id = "lec-box${index}">
-            <label>Lecture:${index+1}</label><br>
-            <label>${lectureId}</label>
-            <button id = "Remove${index}" onclick="removeLecture(this.id)" class= "Remove"style="margin-left: 600px">Remove</button>
-         	</div>
-  		`)
-    }
-  </script>
+		function removeLecture(removeId)
+		{
+		console.log(lectureNames);
+		var ID=removeId.slice(6);
+		console.log("Removed "+lectureNames[ID]);
+		var lectureBoxId="#lectureBox" + ID;
+		lectureNames.splice(ID,1);
+		console.log(lectureNames);
+		$("#lecture").empty();
+		$("#lecture").append(`
+			<h5>Unpublished section:</h5>
+			<button id="save" onclick="createLecture()">ADD</button>`);
+		$(lectureBoxId).remove(lectureBoxId);
+		lectureNames.forEach(replaceLecture);
+		}
+
+		function replaceLecture(lectureId,index)
+		{
+		console.log("index:"+index);
+		console.log("lecture:"+lectureId);
+		var ID="#lectureBox"+index;
+		console.log(ID);
+		$("#lecture").append(`
+			<div class="container p-3 my-3 border" id = "lec-box${index}">
+				<label>Lecture:${index+1}</label><br>
+				<label>${lectureId}</label>
+				<button id = "Remove${index}" onclick="removeLecture(this.id)" class= "Remove"style="margin-left: 600px">Remove</button>
+			</div>
+		`)
+		}
+	</script>
 </head>
 <body>  
 <div class="container p-3 my-3 border" id='lecture'>
