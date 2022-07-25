@@ -71,7 +71,6 @@
 
         });
 
-        //update todo script
         $(document).on('click', '.update-todo', function () {
             var listText = $(this).parent('.list-row').find('textarea').val();
             if ($.trim(listText) == '') {
@@ -85,12 +84,10 @@
             }
         });
 
-        // line through the  todo list script
         $(document).on('click', '.list-data', function () {
             $(this).toggleClass('line-through');
         });
     </script>
 
 </body>
-
 </html>
