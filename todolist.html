@@ -4,6 +4,13 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#btnShow').click(function () {
+                $("#imgTest").attr("src", $("#txtUrl").val());
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -11,8 +18,9 @@
         <center>
             <h2>TO DO List Using jQuery</h2>
             <div class="todo-input">
-                <input type="text" Placeholder="Type Here...">
-                <button class="add-todo">Add</button>
+                <input type="text" Placeholder="Type the title here...">
+                <input type="text" id="txtUrl" placeholder="Type Image URL..."/>
+                <button class="add-todo" id="btnShow">Add</button>
             </div>
             <div class="error"></div>
             <div class="todo-list">
@@ -20,14 +28,13 @@
             </div>
         </center>
     </div>
+        <img id="imgTest" />
 
     <script>
-        var i = 1;
         $(document).on('click', '.add-todo', function () {
             var todoInputData = $(this).siblings('input').val();
             var todoListData = `<div class="row-parent">
   <div class="list-row">
-  <div class="list-num">`+ i + `.</div>
   <div class="list-data">`+ todoInputData + `</div>
   <div class="edit-todo">&#9998;</div>
   <div class="remove-todo">&#x2715;</div>
@@ -90,4 +97,5 @@
     </script>
 
 </body>
+
 </html>
